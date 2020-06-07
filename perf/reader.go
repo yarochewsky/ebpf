@@ -135,8 +135,8 @@ func readRawSample(rd io.Reader) ([]byte, error) {
 }
 
 // AddFd adds
-func (pr *Reader) AddFd(fd, cpu int) {
-  addToEpoll(pr.epollFd, fd, cpu)
+func (pr *Reader) AddFd(fd, cpu int) error {
+  return addToEpoll(pr.epollFd, fd, cpu)
 }
 
 // Reader allows reading bpf_perf_event_output
