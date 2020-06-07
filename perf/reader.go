@@ -134,6 +134,13 @@ func readRawSample(rd io.Reader) ([]byte, error) {
 	return data, nil
 }
 
+// AddFd adds
+func (pr *Reader) AddFd(int fd) {
+  for i := 0; i < 4; i++ {
+    addToEpoll(pr.epollFd, fd, i)
+  }
+}
+
 // Reader allows reading bpf_perf_event_output
 // from user space.
 type Reader struct {
